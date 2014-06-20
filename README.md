@@ -8,6 +8,11 @@ Installation
 
 go get github.com/jszwec/gocyk
 
+Compilation
+------------
+
+run 'go build' in cmd/gocyk folder 
+
 Usage
 -----
 
