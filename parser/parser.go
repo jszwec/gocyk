@@ -37,11 +37,7 @@ func Parse(file string) (map[string][]string, error) {
 func parse(file io.Reader) (map[string][]string, error) {
 	g, sc := make(map[string][]string), bufio.NewScanner(file)
 	for sc.Scan() {
-		line := strings.Trim(sc.Text(), " \t")
-		if line == "" {
-			continue
-		}
-		if err := parseLine(line, g); err != nil {
+		if err := parseLine(strings.Trim(sc.Text(), " \t"), g); err != nil {
 			return nil, err
 		}
 	}
@@ -49,6 +45,9 @@ func parse(file io.Reader) (map[string][]string, error) {
 }
 
 func parseLine(line string, g map[string][]string) error {
+	if line == "" {
+		return nil
+	}
 	match := productRegex.FindStringSubmatch(line)
 	if match == nil {
 		return errNoMatch(line)
