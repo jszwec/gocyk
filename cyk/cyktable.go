@@ -28,7 +28,7 @@ func NewCykTable(n int) CykTable {
 
 // Dumps CykTable type to file in html table style
 func (ct *CykTable) ToFile(fn string) error {
-	var t = template.Must(template.New(tname).Parse(tableTemplate))
+	t := template.Must(template.New(tname).Parse(tableTemplate))
 	f, err := os.Create(fn)
 	if err != nil {
 		return err

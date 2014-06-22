@@ -1,22 +1,20 @@
 package cyk
 
-import "strings"
-
 // Executes Cocke–Younger–Kasami algorithm on given formal grammar in Chomsky reduced form
 // and on the given word. The result is a table containing the results for both word
 // and it's subwords.
 func Cyk(g map[string][]string, w string) CykTable {
-	c, ct := strings.Split(w, ""), NewCykTable(len(w))
+	ct := NewCykTable(len(w))
 	for i := range ct[0] {
-		ct[0][i], ct[1][i] = CykCell{c[i]: {}}, make(CykCell)
-		searchNadd(g, ct[1][i], c[i])
+		ct[0][i], ct[1][i] = CykCell{string(w[i]): {}}, make(CykCell)
+		searchNadd(g, ct[1][i], string(w[i]))
 	}
-	return cyk(g, ct, c)
+	return cyk(g, ct, len(w))
 }
 
-func cyk(g map[string][]string, ct CykTable, c []string) CykTable {
-	for i := 2; i < len(c)+1; i++ {
-		for j := 0; j < len(c)-i+1; j++ {
+func cyk(g map[string][]string, ct CykTable, n int) CykTable {
+	for i := 2; i < n+1; i++ {
+		for j := 0; j < n-i+1; j++ {
 			ct[i][j] = make(CykCell)
 			for k := 1; k < i; k++ {
 				splitNsearch(g, ct[i][j], ct[k][j], ct[i-k][j+k])
