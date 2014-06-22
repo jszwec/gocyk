@@ -16,4 +16,10 @@ run 'go build' in cmd/gocyk folder
 Usage
 -----
 
-  gocyk -input grammar.txt -word abba -output file.html
+  gocyk -input grammar.txt -word baaba -output file.html
+
+  grammar example : 
+  S->AB|BC
+  A->BA|a
+  B->CC|b
+  C->AB|a
