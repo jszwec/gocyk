@@ -6,12 +6,7 @@ Cocke–Younger–Kasami algorithm implementation in GO.
 Installation
 ------------
 
-go get github.com/jszwec/gocyk
-
-Compilation
-------------
-
-run 'go build' in cmd/gocyk folder 
+go get github.com/jszwec/gocyk/cmd/gocyk
 
 Usage
 -----
